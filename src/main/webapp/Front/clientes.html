@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Clientes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Registro de Clientes</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form id="registroClienteForm" class="form-container">
+                    <div class="form-group">
+                        <label for="cedula_cli">Cédula:</label>
+                        <input type="text" class="form-control" id="cedula_cli" name="cedula_cli" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion_cli">Dirección:</label>
+                        <input type="text" class="form-control" id="direccion_cli" name="direccion_cli">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_cli">Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="email_cli" name="email_cli">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre_cli">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre_cli" name="nombre_cli" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono_cli">Teléfono:</label>
+                        <input type="tel" class="form-control" id="telefono_cli" name="telefono_cli">
+                    </div>
+                    <button type="button" onclick="registrarCliente()" class="btn btn-primary">Registrar Cliente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function registrarCliente() {
+            var clienteData = {
+                cedula_cli: document.getElementById('cedula_cli').value,
+                direccion_cli: document.getElementById('direccion_cli').value,
+                email_cli: document.getElementById('email_cli').value,
+                nombre_cli: document.getElementById('nombre_cli').value,
+                telefono_cli: document.getElementById('telefono_cli').value
+            };
+
+            // Realizar la solicitud POST
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:9098/TiendaVirtualSB/registrarCliente",
+                contentType: "application/json",
+                data: JSON.stringify(clienteData),
+                success: function(response) {
+                    console.log("Cliente registrado con éxito:", response);
+                    alert("Cliente registrado con éxito");
+                    // Limpiar el formulario después de registrar
+                    document.getElementById("registroClienteForm").reset();
+                },
+                error: function(error) {
+                    console.error("Error al registrar cliente:", error);
+                    alert("Hubo un error al registrar el cliente");
+                }
+            });
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
