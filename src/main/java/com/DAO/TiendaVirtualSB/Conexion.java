@@ -9,7 +9,7 @@ public class Conexion {
    /**Parametros de conexion*/
    static String bd = "dbgrupo12";
    static String login = "root";
-   static String password = "";
+   static String password = "Santi716*";
    static String url = "jdbc:mysql://localhost:3306/"+bd;
 
    Connection connection = null;

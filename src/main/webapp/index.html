@@ -1,15 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Virtual</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            padding-top: 50px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .menu-item {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>Bienvenidos a la tienda virtual</h1>
-<a href="/TiendaVirtualSB/ConsultaClientes.jsp">Consultar Clientes</a>
-<a href="/TiendaVirtualSB/RegistroClientes.jsp">Registrar Clientes</a>
-<a href="/TiendaVirtualSB/ConsultaProveedores.jsp">Consultar Proveedores</a>
-<a href="/TiendaVirtualSB/RegistroProveedores.jsp">Registrar Proveedores</a>
-<a href="/TiendaVirtualSB/ReporteVentas.jsp">Reporte Ventas</a>
+<div class="container">
+    <h1 class="mt-5">Bienvenidos a la tienda virtual</h1>
+    <a href="/TiendaVirtualSB/ConsultaClientes.jsp" class="btn btn-primary btn-lg btn-block menu-item">Consultar Clientes</a>
+    <a href="/TiendaVirtualSB/RegistroClientes.jsp" class="btn btn-primary btn-lg btn-block menu-item">Registrar Clientes</a>
+    <a href="/TiendaVirtualSB/ConsultaProveedores.jsp" class="btn btn-primary btn-lg btn-block menu-item">Consultar Proveedores</a>
+    <a href="/TiendaVirtualSB/RegistroProveedores.jsp" class="btn btn-primary btn-lg btn-block menu-item">Registrar Proveedores</a>
+    <a href="/TiendaVirtualSB/ReporteVentas.jsp" class="btn btn-primary btn-lg btn-block menu-item">Reporte Ventas</a>
+</div>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

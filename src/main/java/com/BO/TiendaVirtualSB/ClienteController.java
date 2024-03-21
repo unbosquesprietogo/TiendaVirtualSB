@@ -1,18 +1,11 @@
 package com.BO.TiendaVirtualSB;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.springframework.boot.json.GsonJsonParser;
-import org.springframework.boot.json.JsonParser;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.DAO.TiendaVirtualSB.ClienteDAO;
-import com.DAO.TiendaVirtualSB.ProveedorDAO;
-import com.DAO.TiendaVirtualSB.VentasDAO;
-import com.DTO.TiendaVirtualSB.ClienteVO;
-import com.DTO.TiendaVirtualSB.ProveedorVO;
-import com.fasterxml.jackson.databind.JsonNode;
+import java.util.List;
+
+import com.DAO.TiendaVirtualSB.*;
+import com.DTO.TiendaVirtualSB.*;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ClienteController {
@@ -42,16 +35,54 @@ public class ClienteController {
 		dao.insertProveedor(p);
 		return "Proveedor Registrado";		
 	}
-	
+
 	@RequestMapping("/consultarProveedores")
-	public ArrayList<ProveedorVO> consultarProveedores(String nit) {		
+	public ArrayList<ProveedorVO> consultarProveedores(String nit) {
 		ProveedorDAO dao = new ProveedorDAO();
-		return dao.consultarProveedores(nit);		
+		return dao.consultarProveedores(nit);
 	}
-	
-	@RequestMapping("/consultarVentas")
-	public ArrayList<String> consultarVentas(String tipo) {		
-		VentasDAO dao = new VentasDAO();
-		return dao.consultarConsolidado(tipo);		
+
+	@RequestMapping("/registrarProducto")
+	public String registrarProducto(ProductoVO p) {
+		ProductoDAO dao = new ProductoDAO();
+		dao.insertarProducto(p);
+		return "Producto Registrado";
 	}
+
+	@RequestMapping("/consultarProductos")
+	public List<ProductoVO> consultarProductos(Integer id) {
+		ProductoDAO dao = new ProductoDAO();
+		return dao.listarProductos(id);
+	}
+
+	@PostMapping("/registrarVenta")
+	public boolean registrarVenta(@RequestBody VentaVO venta) {
+		VentaDAO ventaDAO = new VentaDAO();
+		return ventaDAO.insertarVentaConDetalles(venta, venta.getDetalles());
+	}
+
+	@RequestMapping("/consultarVenta")
+	public VentaVO consultarVenta(int id) {
+		VentaDAO ventaDAO = new VentaDAO();
+		return ventaDAO.consultarVentaConDetalles(id);
+	}
+
+	@RequestMapping("/registrarUsuario")
+	public String registrarUsuario(UsuarioVO u) {
+		UsuarioDAO dao = new UsuarioDAO();
+		boolean result = dao.registrarUsuario(u);
+		if(result){
+		return "Usuario Registrado";
+		}else {
+			return "Usuario no registrado";
+		}
+	}
+
+	@RequestMapping("/consultarUsuario")
+	public boolean consultarUsuario(UsuarioVO u) {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.login(u);
+
+	}
+
 }

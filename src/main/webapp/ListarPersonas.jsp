@@ -1,64 +1,70 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
- <html>
-    <head>
+<html>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Registered Users</title>
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script
-        src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet"
-        href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet"
-        href="http://code.jquery.com/ui/1.11.4/themes/flick/jquery-ui.css">
-    <script>
-        
-    var saveme =  $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/TiendaVirtualApp/listarPersonas", //nombre del archivo php que consultaremos.
-      
-        success: function(data) {
-          $.each(data, function(i, item) {
-          lista = document.getElementById("myTable");
-          var tr = document.createElement("tr");
-          var columna1 = document.createElement("th")
-          columna1.innerHTML = item.cedula_cli;
-          var columna2 = document.createElement("th")
-          columna2.innerHTML = item.direccion_cli;
-          var columna3 = document.createElement("th")
-          columna3.innerHTML = item.email_cli;
-          var columna4 = document.createElement("th")
-          columna4.innerHTML = item.nombre_cli;
-          var columna5 = document.createElement("th")
-          columna5.innerHTML = item.telefono_cli;
-          lista.appendChild(tr);
-          tr.appendChild(columna1);
-          tr.appendChild(columna2);
-          tr.appendChild(columna3);
-          tr.appendChild(columna4);
-          tr.appendChild(columna5);       
-         });
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+    <style>
+        /* Custom Styles */
+        body {
+            padding-top: 50px;
+            text-align: center;
         }
-      });
-    
+        h1 {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tabla').DataTable();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/TiendaVirtualApp/listarPersonas",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data, function(i, item) {
+                        var tr = $('<tr>');
+                        tr.append($('<td>').text(item.cedula_cli));
+                        tr.append($('<td>').text(item.direccion_cli));
+                        tr.append($('<td>').text(item.email_cli));
+                        tr.append($('<td>').text(item.nombre_cli));
+                        tr.append($('<td>').text(item.telefono_cli));
+                        $('#myTable').append(tr);
+                    });
+                }
+            });
+        });
     </script>
-
-    </head>
-    <body>
-    
-    <table id="tabla">
-<thead>
-  <tr>
-    <th>Cédula</th>
-    <th>Dirección</th>
-    <th>Correo Electrónico</th>
-    <th>Nombre</th>
-    <th>Teléfono</th>
-  </tr>
-</thead>
-<tbody id="myTable">
-</tbody>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Registered Users</h1>
+    <table id="tabla" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Dirección</th>
+            <th>Correo Electrónico</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+        <!-- Data will be dynamically inserted here -->
+        </tbody>
+    </table>
+</div>
+<!-- Bootstrap JS and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 </body>
 </html>
