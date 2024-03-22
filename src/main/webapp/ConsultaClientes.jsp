@@ -110,6 +110,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-sm-3">
+		<a href="/TiendaVirtualSB/" class="btn btn-primary btn-sm ">Regresar</a>
+	</div>
 	<div id="dvResult"></div>
 </div>
 <!-- Bootstrap JS and dependencies -->

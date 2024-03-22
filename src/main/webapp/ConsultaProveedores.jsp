@@ -106,7 +106,11 @@
 			<div class="col-sm-2">
 				<button class="btn btn-primary" onclick="consultar()">Consultar</button>
 			</div>
+
 		</div>
+	</div>
+	<div class="col-sm-3">
+		<a href="/TiendaVirtualSB/" class="btn btn-primary btn-sm ">Regresar</a>
 	</div>
 	<div id="dvResult"></div>
 </div>
