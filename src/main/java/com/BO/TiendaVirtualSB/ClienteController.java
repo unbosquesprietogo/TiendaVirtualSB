@@ -13,8 +13,8 @@ public class ClienteController {
 	@RequestMapping("/registrarCliente")
 	public void registrarCliente(ClienteVO cli) 
 	 {
-		ClienteDAO Dao=new ClienteDAO(); 
-	    Dao.registrarCliente(cli);	    
+		ClienteDAO dao=new ClienteDAO();
+	    dao.registrarCliente(cli);
 	 }	 
 	/**
 	 * permite consultar el Cliente asociado al documento enviado como parámetro
@@ -24,8 +24,20 @@ public class ClienteController {
 	 */	
 	@RequestMapping("/consultarClientes")
 	public ArrayList<ClienteVO> consultarClientes(String nit) {
-		ClienteDAO Dao=new ClienteDAO(); 
-	    return 	Dao.consultarClientes(nit);		
+		ClienteDAO dao=new ClienteDAO();
+	    return 	dao.consultarClientes(nit);
+	}
+
+	/**
+	 * permite consultar el Cliente asociado al documento enviado como parámetro
+	 * o todos los clientes si no hay parametro
+	 * @param documento
+	 * @return
+	 */
+	@RequestMapping("/consultarUsuarios")
+	public ArrayList<UsuarioVO> consultarUsuarios(String nit) {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		return 	usuarioDAO.consultarUsuarios(nit);
 	}
 
 	//?NIT=112233&nombre=Gato&direccion=Barranquilla&telefono=314456987&email=gato@hotmail.com&sitioweb=www.elgato.com

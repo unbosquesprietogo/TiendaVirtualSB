@@ -116,6 +116,9 @@
 				</td>
 			</tr>
 		</table>
+		<div class="col-sm-3">
+			<a href="/TiendaVirtualSB/" class="btn btn-primary btn-sm ">Regresar</a>
+		</div>
 	</div>
 </div>
 <!-- Bootstrap JS -->

@@ -1,10 +1,12 @@
 package com.DAO.TiendaVirtualSB;
 
+import com.DTO.TiendaVirtualSB.ClienteVO;
 import com.DTO.TiendaVirtualSB.UsuarioVO;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UsuarioDAO {
 
@@ -31,6 +33,31 @@ public class UsuarioDAO {
         }
         return false;
     }
+
+    public ArrayList<UsuarioVO> consultarUsuarios(String nit) {
+        ArrayList<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
+        Conexion conex = new Conexion();
+        String sql = "SELECT * FROM usuarios";
+        if (!nit.equals("null")) {
+            sql = sql + "WHERE cedula = '" + nit + "'";
+        }
+        try {
+            Statement consulta = conex.getConnection().createStatement();
+            ResultSet res = consulta.executeQuery(sql);
+            while (res.next()){
+                UsuarioVO cli = new UsuarioVO(res.getString("cedula"),res.getString("usuario"),res.getString("contraseña"),
+                        res.getString("nombre"),res.getString("apellido"));
+                usuarios.add(cli);
+            }
+            res.close();
+            consulta.close();
+            conex.desconectar();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return usuarios;
+    }
+
     public boolean login(UsuarioVO usuario) {
         Conexion conex = new Conexion();
         String contraseñaEncriptada = encriptarContraseña(usuario.getContraseña());

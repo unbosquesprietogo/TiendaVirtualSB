@@ -20,9 +20,9 @@ public class UsuarioVO {
         this.contraseña = contraseña;
     }
 
-    public UsuarioVO(String usuario, String contraseña, String cedula, String nombre, String apellido) {
+    public UsuarioVO(String usuario, String contrasenia, String cedula, String nombre, String apellido) {
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contraseña = contrasenia;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
