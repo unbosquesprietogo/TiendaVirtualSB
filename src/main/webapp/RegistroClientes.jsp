@@ -73,7 +73,7 @@
 
 				http.onreadystatechange = function() {//Call a function when the state changes.
 					if (http.readyState == 4 && http.status == 200) {
-						alert(http.responseText);
+						alert("Se ha creado éxitosamente");
 					}
 				}
 				http.send(params);

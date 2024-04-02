@@ -13,6 +13,8 @@
 
 	//===================================== FUNCIONES PROPIAS =============================
 
+
+
 	function consultar(t) {
 		if (t==1){
 			var tipo = "cliente";

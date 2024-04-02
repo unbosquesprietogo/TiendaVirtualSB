@@ -60,7 +60,8 @@ public class UsuarioDAO {
 
     public boolean login(UsuarioVO usuario) {
         Conexion conex = new Conexion();
-        String contraseñaEncriptada = encriptarContraseña(usuario.getContraseña());
+        //String contraseñaEncriptada = encriptarContraseña(usuario.getContraseña());
+        String contraseñaEncriptada = usuario.getContraseña();
         String sql = "SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ?";
         try {
             try (Connection connection = conex.getConnection();
