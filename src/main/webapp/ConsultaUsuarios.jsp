@@ -37,7 +37,7 @@
 				nit = "null";
 			}
 			var http = new XMLHttpRequest();
-			var url = '/TiendaVirtualSB/consultarClientes';
+			var url = '/TiendaVirtualSB/consultarUsuarios';
 			var params = "nit=" + nit;
 			http.open('POST', url, true);
 			//Send the proper header information along with the request
@@ -98,7 +98,7 @@
 </head>
 <body>
 <div class="container">
-	<h1 class="mt-5">Consulta de Clientes</h1>
+	<h1 class="mt-5">Consulta de Usuarios</h1>
 	<div class="custom-div"> <!-- Custom div added -->
 		<div class="form-group row">
 			<label for="txtNIT" class="col-sm-2 col-form-label">NIT:</label>
